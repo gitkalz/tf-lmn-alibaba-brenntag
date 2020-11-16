@@ -19,3 +19,11 @@ data "alicloud_enhanced_nat_available_zones" "enhanced"{
 output "nat" {
     value = data.alicloud_enhanced_nat_available_zones.enhanced
 }
+
+data "alicloud_zones" "zones_ds" {
+
+}
+
+output "az" {
+    value = data.alicloud_zones.zones_ds.ids
+}
