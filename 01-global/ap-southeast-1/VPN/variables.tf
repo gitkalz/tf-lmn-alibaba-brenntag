@@ -21,3 +21,9 @@ variable "conn_name" {
     description = "(optional) describe your variable"
     default = "TO-BRNTG-SG-CONN"
 }
+
+variable "sg_psk" {
+    type = string
+    description = "Enter the Pre Shared Key for SG Connection"
+    default = "TO-BRNTG-SG-CONN"
+}

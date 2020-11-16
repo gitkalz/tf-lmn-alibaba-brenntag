@@ -33,6 +33,6 @@ resource "alicloud_vpn_connection" "vpn_conn" {
   effect_immediately  = true
   ike_config {
     ike_version   = "ikev2"
-    psk           = "Hlrc215L8MVGoReEuK/AJTtrlN8uDPSoEtBM6xyiy64OTYlp3DmeAoQB/zYTQdIt4i1EJkrN7Sqyc8ylU54muQ=="
+    psk           = var.sg_psk
   }
 }
