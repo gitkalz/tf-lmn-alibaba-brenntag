@@ -11,7 +11,7 @@ subnets = {
     cidr = "192.168.12.0/24"
     desc = "Subnet in Zone 1A Singapore"
     tags = {
-        Role = "QA"
+        Role = "Public"
     }
   }
   snet2 = {
