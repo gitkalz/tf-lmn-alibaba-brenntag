@@ -44,3 +44,26 @@ data
 Number:
 
 Starts at 1, only increments if we have outgrown that AZ’s subnet
+
+
+```
+ + az  = [                                                                                                                                                                      
+      + "cn-hangzhou-b",                                                                                                                                                         
+      + "cn-hangzhou-e",                                                                                                                                                         
+      + "cn-hangzhou-f",                                                                                                                                                         
+      + "cn-hangzhou-g",                                                                                                                                                         
+      + "cn-hangzhou-h",                                                                                                                                                         
+      + "cn-hangzhou-i",                                                                                                                                                         
+      + "cn-hangzhou-j",                                                                                                                                                         
+    ] 
+
+NATGW ENhanced Zones
+          ~ {
+              > "华东 1 可用区 H"
+              "cn-hangzhou-h"
+            }
+          ~ {
+              > "华东 1 可用区 I"
+              "cn-hangzhou-i"
+            }
+```

@@ -1,10 +1,8 @@
-region = "ap-southeast-1"
- 
 vpc = {
     name = "BRNTG-SG-SAP-VPC"
     desc = "Brenntag Singapore VPC"
     cidr = "192.168.12.0/22" 
-}
+    }
 
 subnets = {
   snet1 = {

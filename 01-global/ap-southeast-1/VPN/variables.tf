@@ -1,29 +1,15 @@
 variable "vpc_id" {
-    type = string
-    description = "(optional) describe your variable"
-    default = ""
+  type        = string
+  description = "Ideally this is pulled from VPC outputs, if not state it here"
+  default     = ""
 }
 
-variable "vgw_name" {
-    type = string
-    description = "(optional) describe your variable"
-    default = "BRNTG-SG-01-VPNGW"
+variable "region" {
+  type        = string
+  description = "AliCloud Region in which you plan to deploy the resources"
 }
 
-variable "cgw_name" {
-    type = string
-    description = "(optional) describe your variable"
-    default = "BRNTG-SG-01-CGW"
-}
-
-variable "conn_name" {
-    type = string
-    description = "(optional) describe your variable"
-    default = "TO-BRNTG-SG-CONN"
-}
-
-variable "sg_psk" {
-    type = string
-    description = "Enter the Pre Shared Key for SG Connection"
-    default = "TO-BRNTG-SG-CONN"
+variable "vpn_config" {
+  type        = map
+  description = "Configure the map object to insert the key inputs"
 }

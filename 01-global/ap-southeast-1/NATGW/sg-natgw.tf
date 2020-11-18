@@ -15,7 +15,7 @@ resource "alicloud_nat_gateway" "sgnatgw" {
   specification = var.natgw_spec
   description   = "A Nat Gateway created by terraform-alicloud-modules/nat-gateway"
   nat_type = "Enhanced"
-  vswitch_id = try(lookup(data.terraform_remote_state.vpc_id.outputs.all.net2, "id", null), var.vsw_id)
+  vswitch_id = try(lookup(data.terraform_remote_state.vpc_id.outputs.all.subnets.snet2, "id", null), var.vsw_id)
 }
 
 resource "alicloud_eip" "eip" {

@@ -1,11 +1,8 @@
 output "all" {
   value = {
-    vpc     = alicloud_vpc.sgvpc
+    vpc     = alicloud_vpc.hkvpc
     subnets = alicloud_subnet.subnets
   }
-}
-
-data "alicloud_account" "current" {
 }
 
 output "current_account_id" {
@@ -17,5 +14,5 @@ data "alicloud_regions" "current_region_ds" {
 }
 
 output "current_region_id" {
-  value = data.alicloud_regions.current_region_ds.regions.0.id
+  value = data.alicloud_regions.current_region_ds
 }
