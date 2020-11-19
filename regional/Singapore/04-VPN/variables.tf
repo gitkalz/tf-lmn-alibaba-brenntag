@@ -13,3 +13,8 @@ variable "vpn_config" {
   type        = map
   description = "Configure the map object to insert the key inputs"
 }
+
+variable "vpc_tfstate_ds" {
+    type = map
+    description = "Enter the TF_State Location for VPC details"
+}

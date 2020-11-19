@@ -4,7 +4,7 @@ data "terraform_remote_state" "vpc_id" {
     resource_group_name  = var.vpc_tfstate_ds.rg_name
     storage_account_name = var.vpc_tfstate_ds.strg_name
     container_name       = var.vpc_tfstate_ds.cntr_name
-    key                  = var.vpc_tfstate.key_path
+    key                  = var.vpc_tfstate_ds.key_path
   }
 }
 
