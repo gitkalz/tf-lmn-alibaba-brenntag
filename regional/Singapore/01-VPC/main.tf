@@ -10,7 +10,7 @@ terraform {
     resource_group_name  = "lmn-sg-ops-rg"
     storage_account_name = "lmnapacops"
     container_name       = "tfstates"
-    key                  = "alicloud/btg/01-global/ap-southeast-1/VPC/terraform.tfstate"
+    key                  = "alicloud/BRNTAG/regional/Singapore/01-VPC/terraform.tfstate"
   }
 }
 

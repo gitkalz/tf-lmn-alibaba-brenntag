@@ -10,4 +10,9 @@ vpn_config = {
   customer_subnets = "192.168.31.0/24"                                                                          # Enter the comma saperated CIDR for Customer/Branch Side Supernet or Subnets to permit routes
   sg_psk           = "Hlrc215L8MVGoReEuK/AJTtrlN8uDPSoEtBM6xyiy64OTYlp3DmeAoQB/zYTQdIt4i1EJkrN7Sqyc8ylU54muQ==" # Preshared Key String - Ideal to be retrieved from Secrets Vault
 }
-
+vpc_tfstate_ds = {
+    rg_name  = "lmn-sg-ops-rg"
+    strg_name = "lmnapacops"
+    cntr_name = "tfstates"
+    key_path  = "alicloud/BRNTAG/regional/Singapore/01-VPC/terraform.tfstate"
+}
