@@ -8,7 +8,7 @@ output "current_region_id" {
 
 output "all" {
   value = {
-    vpc     = alicloud_vpc.hzvpc
+    vpc     = alicloud_vpc.vpc
     subnets = alicloud_subnet.subnets
   }
 }

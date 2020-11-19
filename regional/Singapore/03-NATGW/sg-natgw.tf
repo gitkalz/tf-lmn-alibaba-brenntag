@@ -13,12 +13,12 @@ resource "alicloud_nat_gateway" "sgnatgw" {
   name          = var.natgw_config.natgw_name
   specification = var.natgw_config.natgw_spec
   description   = var.natgw_config.natgw_desc
-  nat_type = "Enhanced"
-  vswitch_id = try(lookup(data.terraform_remote_state.vpc_id.outputs.all.subnets.snet2, "id", null), var.vsw_id)
+  nat_type      = "Enhanced"
+  vswitch_id    = try(lookup(data.terraform_remote_state.vpc_id.outputs.all.subnets.snet2, "id", null), var.vsw_id)
 }
 
 resource "alicloud_eip" "eip" {
-  name = "EIP-NATGW-01"
+  name                 = "EIP-NATGW-01"
   internet_charge_type = "PayByTraffic"
 }
 

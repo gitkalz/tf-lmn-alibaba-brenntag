@@ -1,4 +1,4 @@
-resource "alicloud_vpc" "hzvpc" {
+resource "alicloud_vpc" "vpc" {
   name        = var.vpc.name
   cidr_block  = var.vpc.cidr
   description = var.vpc.desc

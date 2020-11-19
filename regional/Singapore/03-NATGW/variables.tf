@@ -15,11 +15,11 @@ variable "region" {
   description = "AliCloud Region in which you plan to deploy the resources"
 }
 variable "natgw_config" {
-    type = map
-    description = "Config map for Nat Gateway Input Variables"
+  type        = map
+  description = "Config map for Nat Gateway Input Variables"
 }
 
 variable "vpc_tfstate_ds" {
-    type = map
-    description = "Enter the TF_State Location for VPC details"
+  type        = map
+  description = "Enter the TF_State Location for VPC details"
 }
