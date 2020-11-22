@@ -5,6 +5,14 @@ output "all" {
   }
 }
 
+output "id" {
+  value = alicloud_vpc.vpc.id
+}
+
+output "cidr_blks" {
+  value = {for k, o in alicloud_subnet.subnets: k.id => o.cidr_block}
+}
+
 data "alicloud_regions" "current_region_ds" {
   current = true
 }

@@ -2,7 +2,7 @@ terraform {
   required_providers {
     alicloud = {
       source  = "aliyun/alicloud"
-      version = "1.103.1"
+      version = "~> 1.103.1"
     }
   }
   # Import the Azure ENV Variables or use Az Login
@@ -21,7 +21,7 @@ provider "alicloud" {
 
 module "vpc" {
   source  = "../../../modules/ali_vpc/"
-  region = var.region
+  region  = var.region
   vpc     = var.vpc
   subnets = var.subnets
   tags    = var.tags
