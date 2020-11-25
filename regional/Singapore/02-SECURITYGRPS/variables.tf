@@ -21,7 +21,6 @@ variable "vpc_tfstate_ds" {
 }
 
 variable "secgrps" {
-  type        = map
   description = "Change the default null to the VPC ID if you want to explicitly define"
   default     = null
 }
