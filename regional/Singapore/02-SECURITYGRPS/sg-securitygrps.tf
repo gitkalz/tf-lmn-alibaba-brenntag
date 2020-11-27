@@ -10,8 +10,8 @@ data "terraform_remote_state" "vpc_id" {
 
 locals {
   sg_ids = flatten([
-    for grps, rules in var.secgrps : [
-      for grpkeys, grpvals in alicloud_security_group.secgrp : [
+    for grpkeys, grpvals in alicloud_security_group.secgrp : [
+      for grps, rules in var.secgrps  : [
         for items in toset(rules) : {
           "name"  = grpvals.name
           "id"    = grpvals.id
