@@ -18,14 +18,10 @@ locals {
       ] if grpvals.name == items.name
     ]
   ])
-
-  subnet_map = tomap({
-    for subnets in local.vpc_subnets : subnets.subnet.name => subnets
-  })
 }
 
 resource "alicloud_subnet" "subnets" {
-  for_each          = local.subnet_map
+  for_each          = { for subnets in local.vpc_subnets : subnets.subnet.name => subnets }
   vpc_id            = lookup(each.value, "vpc_id", null)
   availability_zone = lookup(each.value.subnet, "az", null)
   description       = lookup(each.value.subnet, "desc", null)

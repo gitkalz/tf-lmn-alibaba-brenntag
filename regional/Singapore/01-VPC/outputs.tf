@@ -1,6 +1,6 @@
 output "vpc_snets" {
   value = {
-    vpc = alicloud_vpc.vpc
+    vpc     = alicloud_vpc.vpc
     subnets = alicloud_subnet.subnets
   }
 }
