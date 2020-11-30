@@ -1,4 +1,4 @@
-data "terraform_remote_state" "vpc_id" {
+data "terraform_remote_state" "vpc_config" {
   backend = "azurerm"
   config = {
     resource_group_name  = var.vpc_tfstate_ds.rg_name
@@ -11,7 +11,7 @@ data "terraform_remote_state" "vpc_id" {
 locals {
   sg_ids = flatten([
     for grpkeys, grpvals in alicloud_security_group.secgrp : [
-      for grps, rules in var.secgrps  : [
+      for grps, rules in var.secgrps : [
         for items in toset(rules) : {
           "name"  = grpvals.name
           "id"    = grpvals.id
@@ -26,12 +26,15 @@ locals {
     tf-dir    = basename(dirname(abspath(path.module)))
     tf-module = basename(abspath(path.module))
   }
+
 }
 
 resource "alicloud_security_group" "secgrp" {
   for_each = var.secgrps
   name     = each.key
-  vpc_id   = try(lookup(data.terraform_remote_state.vpc_id.outputs.all.vpc, "id", null), var.vpc_id)
+  # Uses the VPC.ID input from the variable if not fallback to VPC Terraform state from the VPC Module from datasource inputs
+  vpc_id = (var.vpc_id != "" && var.vpc_id != null) ? var.vpc_id  : data.terraform_remote_state.vpc_config.outputs.vpc_id
+  #vpc_id   = try(lookup(data.terraform_remote_state.vpc_config.outputs.vpc, "id", null), var.vpc_id)
   tags     = local.tags
   lifecycle {
     ignore_changes = [

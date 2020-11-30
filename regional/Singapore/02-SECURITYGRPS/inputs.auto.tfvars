@@ -7,6 +7,8 @@ vpc_tfstate_ds = {
   key_path  = "alicloud/BRNTAG/regional/Singapore/01-VPC/terraform.tfstate"
 }
 
+vpc_id = ""
+
 secgrps = {
   allow_rdp_ssh = [
     {

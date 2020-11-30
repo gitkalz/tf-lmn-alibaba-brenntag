@@ -11,6 +11,17 @@ output "current_region_id" {
 #   value = alicloud_security_group.secgrp
 # }
 
+output "sg_grps" {
+  value = tomap({
+    for i, l in alicloud_security_group.secgrp :
+    l.name => l.id
+  })
+}
+
+output "vpc_id" {
+  value = (var.vpc_id != "" && var.vpc_id != null) ? var.vpc_id  : data.terraform_remote_state.vpc_config.outputs.vpc_id
+}
+
 output "sg_rules" {
   value = tomap({
     for i, l in alicloud_security_group.secgrp :

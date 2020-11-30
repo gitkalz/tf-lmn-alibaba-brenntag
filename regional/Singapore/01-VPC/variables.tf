@@ -1,7 +1,7 @@
-variable "subnets" {
-  type        = map
-  description = "(optional) describe your variable"
-}
+# variable "subnets" {
+#   type        = map
+#   description = "(optional) describe your variable"
+# }
 
 variable "region" {
   type        = string
@@ -9,7 +9,6 @@ variable "region" {
 }
 
 variable "vpc" {
-  type        = map
   description = "(optional) describe your variable"
 }
 

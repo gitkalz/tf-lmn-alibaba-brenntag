@@ -1,8 +1,13 @@
-output "vpc_snets" {
-  value = {
-    vpc     = alicloud_vpc.vpc
-    subnets = alicloud_subnet.subnets
-  }
+output "subnets" {
+  value = alicloud_subnet.subnets
+}
+
+output "vpc" {
+  value = alicloud_vpc.vpc
+}
+
+output "vpc_id" {
+  value = alicloud_vpc.vpc.id
 }
 
 data "alicloud_account" "current" {
@@ -21,6 +26,7 @@ output "current_region_id" {
 }
 
 # output "subnet_list" {
+
 #   value = flatten([
 #     for grpkeys, grpvals in alicloud_vpc.vpc : [
 #       for vpc, items in var.vpc : [
