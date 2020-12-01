@@ -67,3 +67,24 @@ NATGW ENhanced Zones
               "cn-hangzhou-i"
             }
 ```
+
+Enable following Services
+KMS
+ECS
+OSS
+HBR
+VPC
+NATGW
+VPN
+
+Create a DMZ Subnet to Host VM's with Public IP's and NAT GW.. Also ensure the Availability Zone of the Subnet/VSW support the NATGW Deployment
+
+#### REGEX Matches
+^.*DMZ.*VSW$ -> Matches any word containing DMZ and ending with VSW ie .. BRNTG-SNET-DMZ-VSW
+^.*Z1A.*VSW$ -> Matches any word containing Z1A and ending with VSW ie .. BRNTG-SNET-Z1A-VSW
+
+#### API Disk mapping to Portal Names
+ESSD = cloud_essd
+Standard SSD = cloud_ssd
+Ultra disk = cloud_efficiency
+Basic disk  = cloud

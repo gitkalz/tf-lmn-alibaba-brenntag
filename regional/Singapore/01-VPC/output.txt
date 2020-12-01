@@ -1,6 +1,0 @@
-[0m[1mdata.alicloud_account.current: Refreshing state... [id=5315904024020711][0m
-[0m[1mdata.alicloud_regions.current_region_ds: Refreshing state... [id=4025274318][0m
-[0m[1malicloud_vpc.vpc["BRNTG-SG-SAP-VPC"]: Refreshing state... [id=vpc-t4nwp4oysql87x2opek9u][0m
-[0m[1malicloud_subnet.subnets["BRNTG-SNET-Z1B-VSW"]: Refreshing state... [id=vsw-t4nmuwbvjig4g8so4q4qk][0m
-[0m[1malicloud_subnet.subnets["BRNTG-SNET-Z1C-VSW"]: Refreshing state... [id=vsw-t4nnlevp4244ir4xrang9][0m
-[0m[1malicloud_subnet.subnets["BRNTG-SNET-Z1A-VSW"]: Refreshing state... [id=vsw-t4njxdn84pq9p2iutdzo6][0m

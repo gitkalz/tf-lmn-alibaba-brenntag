@@ -7,6 +7,7 @@ vpc_tfstate_ds = {
   key_path  = "alicloud/BRNTAG/regional/Singapore/01-VPC/terraform.tfstate"
 }
 
+vpc_key_regex = "^.*SG.*VPC$"
 vpc_id = ""
 
 secgrps = {

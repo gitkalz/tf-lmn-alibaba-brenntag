@@ -1,11 +1,20 @@
-data "terraform_remote_state" "vpc_config" {
-  backend = "azurerm"
-  config = {
-    resource_group_name  = var.vpc_tfstate_ds.rg_name
-    storage_account_name = var.vpc_tfstate_ds.strg_name
-    container_name       = var.vpc_tfstate_ds.cntr_name
-    key                  = var.vpc_tfstate_ds.key_path
-  }
+# data "terraform_remote_state" "vpc_config" {
+#   backend = "azurerm"
+#   config = {
+#     resource_group_name  = var.vpc_tfstate_ds.rg_name
+#     storage_account_name = var.vpc_tfstate_ds.strg_name
+#     container_name       = var.vpc_tfstate_ds.cntr_name
+#     key                  = var.vpc_tfstate_ds.key_path
+#   }
+# }
+
+data "alicloud_kms_secrets" "kms_secrets_ds" {
+  name_regex = var.vpc_key_regex
+}
+
+data "alicloud_kms_secret_versions" "kms_secret_versions_ds" {
+  secret_name = data.alicloud_kms_secrets.kms_secrets_ds.secrets.0.id
+  enable_details = true
 }
 
 locals {
@@ -26,14 +35,15 @@ locals {
     tf-dir    = basename(dirname(abspath(path.module)))
     tf-module = basename(abspath(path.module))
   }
-
+  vpc_id = (var.vpc_id != "" && var.vpc_id != null) ? var.vpc_id  : try(data.alicloud_kms_secret_versions.kms_secret_versions_ds.versions.0.secret_data,null)
 }
 
 resource "alicloud_security_group" "secgrp" {
   for_each = var.secgrps
   name     = each.key
-  # Uses the VPC.ID input from the variable if not fallback to VPC Terraform state from the VPC Module from datasource inputs
-  vpc_id = (var.vpc_id != "" && var.vpc_id != null) ? var.vpc_id  : data.terraform_remote_state.vpc_config.outputs.vpc_id
+  vpc_id = local.vpc_id
+  # Uses the VPC.ID input from the variable if not fallback to VPC Terraform statefile from the VPC Module from datasource inputs
+  # vpc_id = (var.vpc_id != "" && var.vpc_id != null) ? var.vpc_id  : data.terraform_remote_state.vpc_config.outputs.vpc_id
   #vpc_id   = try(lookup(data.terraform_remote_state.vpc_config.outputs.vpc, "id", null), var.vpc_id)
   tags     = local.tags
   lifecycle {

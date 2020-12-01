@@ -24,3 +24,8 @@ variable "secgrps" {
   description = "Change the default null to the VPC ID if you want to explicitly define"
   default     = null
 }
+
+variable "vpc_key_regex" {
+  type = string
+  description = "Enter the Regex to match the VPC Name in which you plan to create security Groups"
+}

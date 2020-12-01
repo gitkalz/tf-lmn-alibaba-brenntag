@@ -18,10 +18,6 @@ output "sg_grps" {
   })
 }
 
-output "vpc_id" {
-  value = (var.vpc_id != "" && var.vpc_id != null) ? var.vpc_id  : data.terraform_remote_state.vpc_config.outputs.vpc_id
-}
-
 output "sg_rules" {
   value = tomap({
     for i, l in alicloud_security_group.secgrp :
@@ -33,3 +29,10 @@ output "sg_rules" {
   })
 }
 
+output "ds_vpc_id" {
+  value = local.vpc_id
+}
+
+# output "ds_secrets" {
+#   value = data.alicloud_kms_secrets.kms_secrets_ds
+# }

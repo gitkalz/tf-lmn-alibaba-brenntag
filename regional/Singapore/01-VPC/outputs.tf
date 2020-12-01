@@ -25,6 +25,12 @@ output "current_region_id" {
   value = data.alicloud_regions.current_region_ds.regions.0.id
 }
 
+
+
+output "natgw_zones" {
+  value = data.alicloud_enhanced_nat_available_zones.default.zones[*].zone_id
+}
+
 # output "subnet_list" {
 
 #   value = flatten([

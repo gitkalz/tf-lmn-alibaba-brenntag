@@ -1,7 +1,7 @@
 region = "ap-southeast-1"
 vpn_config = {
   vgw_name         = "BRNTG-SG-01-VPNGW"                                                                        #Enter the Name of the VPN Gateway to be assigned
-  vgw_desc         = "VPN Gateway"                                                                              #(Optional) Enter the description for VPN Gateway Purpose ENV etc
+  vgw_desc         = "SG VPN Gateway"                                                                              #(Optional) Enter the description for VPN Gateway Purpose ENV etc
   cgw_name         = "BRNTG-SG-01-CGW"                                                                          #Customer GW configuration name
   cgw_desc         = "Customer Gateway"                                                                         # (Optional) Enter the Description of CGW Configuration
   cgw_ip           = "42.14.23.15"                                                                              # Mandatory - Customer Side Public IP Address for IPSec Connection
