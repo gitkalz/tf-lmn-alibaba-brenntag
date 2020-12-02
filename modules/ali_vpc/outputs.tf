@@ -1,16 +1,20 @@
-output "all" {
-  value = {
-    vpc     = alicloud_vpc.vpc
-    subnets = alicloud_subnet.subnets
-  }
+output "subnets" {
+  value = alicloud_subnet.subnets
 }
 
-output "id" {
+output "vpc_name" {
+  value = alicloud_vpc.vpc.name
+}
+
+output "vpc_id" {
   value = alicloud_vpc.vpc.id
 }
 
-output "cidr_blks" {
-  value = {for k, o in alicloud_subnet.subnets: k.id => o.cidr_block}
+data "alicloud_account" "current" {
+}
+
+output "current_account_id" {
+  value = data.alicloud_account.current.id
 }
 
 data "alicloud_regions" "current_region_ds" {

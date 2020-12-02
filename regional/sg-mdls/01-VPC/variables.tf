@@ -1,6 +1,6 @@
 variable "region" {
-   type = string
-   description = "Enter the Region"
+  type        = string
+  description = "AliCloud Region in which you plan to deploy the resources"
 }
 
 variable "vpc_config" {
@@ -11,3 +11,4 @@ variable "tags" {
   type        = map
   description = "(optional) describe your variable"
 }
+

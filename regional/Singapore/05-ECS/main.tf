@@ -2,9 +2,10 @@ terraform {
   required_providers {
     alicloud = {
       source  = "aliyun/alicloud"
-      version = "1.103.1"
+      version = "~> 1"
     }
   }
+
   # Import the Azure ENV Variables or use Az Login
   backend "azurerm" {
     resource_group_name  = "lmn-sg-ops-rg"

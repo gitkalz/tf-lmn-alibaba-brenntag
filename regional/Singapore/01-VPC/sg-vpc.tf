@@ -19,20 +19,6 @@ locals {
   )
 }
 
-# vpc_config = flatten([
-#     for grpkeys, grpvals in alicloud_vpc.vpc : [
-#       for vpc, items in var.vpc : [
-#         for snets in items.subnets : {
-#           "vpc_name" = items.name
-#           "vpc_id"   = grpvals.id
-#           "subnet"   = snets
-#         }
-#       ] if grpvals.name == items.name
-#     ]
-#   ])
-
-
-
 resource "alicloud_subnet" "subnets" {
   for_each          = tomap({ for subnets in local.vpc_subnets : subnets.subnet.name => subnets })
   vpc_id            = lookup(each.value, "vpc_id", null)
@@ -64,3 +50,4 @@ resource "alicloud_kms_secret" "snet_ids" {
   force_delete_without_recovery = true
   tags                          = each.value.tags
 }
+
