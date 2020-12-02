@@ -17,10 +17,6 @@ output "current_account_id" {
   value = data.alicloud_account.current.id
 }
 
-data "alicloud_regions" "current_region_ds" {
-  current = true
-}
-
-output "current_region_id" {
+output "current_region" {
   value = data.alicloud_regions.current_region_ds.regions.0.id
 }

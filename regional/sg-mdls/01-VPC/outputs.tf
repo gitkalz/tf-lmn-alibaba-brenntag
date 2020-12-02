@@ -11,16 +11,16 @@ output "vpc_name" {
 }
 
 output "deployed_in" {
-  value = module.vpc.current_region_id
+  value = module.vpc.current_region
 }
 
 output "subnets_list" {
-  value = [for keys,items in module.vpc.subnets: {
+  value = flatten([for keys,items in module.vpc.subnets: {
         "${items.name}" = {
           "id" = items.id
           "ip_cidr" = items.cidr_block
           "zone" = items.availability_zone
           "description" = items.description
           }
-      }]
+      }])
 }

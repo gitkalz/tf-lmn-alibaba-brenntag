@@ -11,28 +11,32 @@ data "alicloud_zones" "zones_ds" {
 }
 
 data "alicloud_instance_types" "types_ds" {
-  cpu_core_count = 1
-  memory_size    = 2
-  availability_zone = "ap-southeast-1a"
+  cpu_core_count       = 1
+  memory_size          = 2
+  availability_zone    = "ap-southeast-1a"
   instance_type_family = "ecs.t5"
 }
-
 
 data "alicloud_images" "images_ds" {
   owners     = "system"
   name_regex = "^ubuntu_20"
 }
 
-
-output "zones_available" {
-    value = data.alicloud_zones.zones_ds
+data "alicloud_vpcs" "vpcs_ds" {
+  status     = "Available"
+  name_regex = "^.*SG.*VPC$"
 }
 
-output "instance_avail" {
-    value = data.alicloud_instance_types.types_ds
+output "vpc_id" {
+  value = data.alicloud_vpcs.vpcs_ds.ids.0
 }
 
-output "ubuntu_img" {
-    value = data.alicloud_images.images_ds
-}
+
+# output "instance_avail" {
+#     value = data.alicloud_instance_types.types_ds
+# }
+
+# output "ubuntu_img" {
+#     value = data.alicloud_images.images_ds
+# }
 

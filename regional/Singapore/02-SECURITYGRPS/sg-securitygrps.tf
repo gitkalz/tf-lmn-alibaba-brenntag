@@ -1,22 +1,3 @@
-# data "terraform_remote_state" "vpc_config" {
-#   backend = "azurerm"
-#   config = {
-#     resource_group_name  = var.vpc_tfstate_ds.rg_name
-#     storage_account_name = var.vpc_tfstate_ds.strg_name
-#     container_name       = var.vpc_tfstate_ds.cntr_name
-#     key                  = var.vpc_tfstate_ds.key_path
-#   }
-# }
-
-data "alicloud_kms_secrets" "kms_secrets_ds" {
-  name_regex = var.vpc_key_regex
-}
-
-data "alicloud_kms_secret_versions" "kms_secret_versions_ds" {
-  secret_name = data.alicloud_kms_secrets.kms_secrets_ds.secrets.0.id
-  enable_details = true
-}
-
 locals {
   sg_ids = flatten([
     for grpkeys, grpvals in alicloud_security_group.secgrp : [

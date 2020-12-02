@@ -9,6 +9,9 @@ resource "alicloud_vpc" "vpc" {
   tags        = merge(try(var.tags, {}), local.tags)
 }
 
+data "alicloud_regions" "current_region_ds" {
+  current = true
+}
 
 locals {
   vpc_subnets = toset(flatten([

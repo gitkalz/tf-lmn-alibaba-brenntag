@@ -1,0 +1,38 @@
+# data.alicloud_vpcs.vpcs_ds:
+data "alicloud_vpcs" "vpcs_ds" {
+    [1m[0mid[0m[0m         = "1383434429"
+    [1m[0mids[0m[0m        = [
+        "vpc-t4nmcq1s0ych2aoa7335k",
+    ]
+    [1m[0mname_regex[0m[0m = "^.*SG.*VPC$"
+    [1m[0mnames[0m[0m      = [
+        "BRNTG-SG-SAP-VPC",
+    ]
+    [1m[0mstatus[0m[0m     = "Available"
+    [1m[0mvpcs[0m[0m       = [
+        {
+            cidr_block     = "192.168.12.0/22"
+            creation_time  = "2020-12-02T06:45:30Z"
+            description    = "Brenntag Singapore VPC"
+            id             = "vpc-t4nmcq1s0ych2aoa7335k"
+            is_default     = false
+            region_id      = "ap-southeast-1"
+            route_table_id = "vtb-t4n9so0r9skrliai1hvay"
+            status         = "Available"
+            tags           = {
+                "deployedBy" = "Lumen"
+                "region"     = "ap-southeast-1"
+                "tf_dir"     = "sg-mdls/01-VPC"
+                "tf_module"  = "ali_vpc"
+            }
+            vpc_name       = "BRNTG-SG-SAP-VPC"
+            vrouter_id     = "vrt-t4nkckjqijdq3lhe1crzt"
+            vswitch_ids    = [
+                "vsw-t4n6d7b29m91kw6xozdjw",
+                "vsw-t4n1bhyhui9b3fqc4g1x7",
+                "vsw-t4ni6lbedg6reoxnqfcyj",
+                "vsw-t4n8kn9heexscvrsiwpge",
+            ]
+        },
+    ]
+}[0m[0m

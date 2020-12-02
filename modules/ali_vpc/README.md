@@ -1,6 +1,8 @@
-**VPC Module is tested working as on Dec 2 2020**
+# Alibaba Cloud VPC Module with Subnets
+_Author: Kalyan Chakravarthi_
+_Tested Date: 2 Dec 2020_
 
-Sample input.auto.tfvars as shown below
+##### Sample input.auto.tfvars as shown below
 
 ```hcl
 region = "ap-southeast-1"
@@ -57,7 +59,7 @@ tags = {
 }
 ```
 
-Call the module as below in your preferred `main.tf` file
+##### Call the module as below in your preferred `main.tf` file
 
 ```hcl
   # Import the Azure ENV Variables or use Az Login
@@ -84,4 +86,97 @@ module "vpc" {
 locals {
   tags = merge(try(var.tags, {}), { tf_dir = "${basename(dirname(abspath(path.root)))}/${basename(abspath(path.root))}" })
 }
+```
+
+##### Insert the following variables required for the module in your `variables.tf` file
+
+```hcl
+variable "region" {
+  type        = string
+  description = "AliCloud Region in which you plan to deploy the resources"
+}
+
+variable "vpc_config" {
+  description = "A object representation of VPC and Subnets to be Deployed"
+}
+
+variable "tags" {
+  type        = map
+  description = "(optional) describe your variable"
+}
+
+```
+
+##### Outputs extracted from the module in `outputs.tf` file
+
+```hcl
+output "vpc_id" {
+  value = module.vpc.vpc_id
+}
+
+output "your_account_ID" {
+  value = module.vpc.current_account_id
+}
+
+output "vpc_name" {
+  value = module.vpc.vpc_name
+}
+
+output "deployed_in" {
+  value = module.vpc.current_region
+}
+
+output "subnets_list" {
+  value = flatten([for keys,items in module.vpc.subnets: {
+        "${items.name}" = {
+          "id" = items.id
+          "ip_cidr" = items.cidr_block
+          "zone" = items.availability_zone
+          "description" = items.description
+          }
+      }])
+}
+```
+
+Example Outputs as below
+
+```
+deployed_in = ap-southeast-1
+subnets_list = [
+  {
+    "BRNTG-SNET-DMZ-VSW" = {
+      "description" = "DMZ Subnet for Hosting VM's with EIP/PIP and NATGW"
+      "id" = "vsw-t4n1bhyhui9b3fqc4g1x7"
+      "ip_cidr" = "192.168.15.0/24"
+      "zone" = "ap-southeast-1a"
+    }
+  },
+  {
+    "BRNTG-SNET-Z1A-VSW" = {
+      "description" = "Subnet in Zone 1A Singapore"
+      "id" = "vsw-t4n8kn9heexscvrsiwpge"
+      "ip_cidr" = "192.168.12.0/24"
+      "zone" = "ap-southeast-1a"
+    }
+  },
+  {
+    "BRNTG-SNET-Z1B-VSW" = {
+      "description" = "Subnet in Zone 1B Singapore"
+      "id" = "vsw-t4n6d7b29m91kw6xozdjw"
+      "ip_cidr" = "192.168.13.0/24"
+      "zone" = "ap-southeast-1b"
+    }
+  },
+  {
+    "BRNTG-SNET-Z1C-VSW" = {
+      "description" = "Subnet in Zone 1C Singapore"
+      "id" = "vsw-t4ni6lbedg6reoxnqfcyj"
+      "ip_cidr" = "192.168.14.0/24"
+      "zone" = "ap-southeast-1c"
+    }
+  },
+]
+vpc_id = vpc-t4nmcq1s0ych2aoa7335k
+vpc_name = BRNTG-SG-SAP-VPC
+your_account_ID = 5315904024020711
 ```
