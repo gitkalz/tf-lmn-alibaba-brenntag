@@ -7,7 +7,7 @@
 #     key                  = var.vpc_tfstate_ds.tfstate_path
 #   }
 # }
-
+### critical external imput vsw-id
 data "alicloud_kms_secrets" "ds_vsw_id_key" {
   name_regex = (var.ecs_config.vswitch_key_regex != "" && var.ecs_config.vswitch_key_regex != null) ? var.ecs_config.vswitch_key_regex : null
 }
@@ -46,13 +46,13 @@ locals {
 }
 
 resource "alicloud_instance" "deploys" {
-  count           = local.ecs_input_map.num_instances
+  count           = local.ecs_input_map.num_instances #assume 0 by default
   image_id        = local.ecs_input_map.image_id
   instance_type   = local.ecs_input_map.instance_type
   vswitch_id      = local.ecs_input_map.vswitch_id
   instance_name   = local.ecs_input_map.num_instances > 1 ? format("%s%03d", local.ecs_input_map.name_pattern, count.index + 1) : local.ecs_input_map.name_pattern
   host_name       = local.ecs_input_map.num_instances > 1 ? format("%s%03d", local.ecs_input_map.name_pattern, count.index + 1) : local.ecs_input_map.name_pattern
-  dry_run         = local.ecs_input_map.dry_run
+  dry_run         = local.ecs_input_map.dry_run # assume true by default
   password        = local.ecs_input_map.password
   security_groups = local.ecs_input_map.security_groups
   tags            = merge(try(local.ecs_input_map.tags, {}), local.tags, { Name = local.ecs_input_map.num_instances > 1 ? format("%s-%03d", local.ecs_input_map.name_pattern, count.index + 1) : local.ecs_input_map.name_pattern })
@@ -66,7 +66,6 @@ resource "alicloud_instance" "deploys" {
     }
   }
 }
-
 
 output "ecs" {
   value = alicloud_instance.deploys

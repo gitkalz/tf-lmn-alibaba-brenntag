@@ -8,7 +8,7 @@ data "alicloud_regions" "current_region_ds" {
 
 resource "alicloud_security_group" "secgrp" {
   for_each = var.secgrps_config
-  name     = each.key
+  name     = "${each.key}_secgrp"
   vpc_id = local.vpc_id
   tags     = merge(try(var.tags, {}), local.tags)
   lifecycle {
@@ -29,7 +29,7 @@ locals {
           "id"    = grpvals.id
           "rules" = items
         }
-      ] if grps == grpvals.name
+      ] if "${grps}_secgrp" == grpvals.name
     ]
   ])
 

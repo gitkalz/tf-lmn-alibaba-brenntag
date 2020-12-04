@@ -3,7 +3,7 @@ provider "alicloud" {
 }
 
 resource "alicloud_vpc" "vpc" {
-  name        = lookup(var.vpc_config, "name", null)
+  name        = "${lookup(var.vpc_config, "name", null)}-VPC"
   cidr_block  = lookup(var.vpc_config, "cidr", null)
   description = lookup(var.vpc_config, "desc", null)
   tags        = merge(try(var.tags, {}), local.tags)
@@ -36,7 +36,7 @@ resource "alicloud_subnet" "subnets" {
   vpc_id            = lookup(each.value, "vpc_id", null)
   availability_zone = each.value.subnet.tags.role == "DMZ" ? data.alicloud_enhanced_nat_available_zones.default.zones[0].zone_id : lookup(each.value.subnet, "az", null)
   description = lookup(each.value.subnet, "desc", null)
-  name        = lookup(each.value.subnet, "name", null)
+  name        = "${lookup(each.value.subnet, "name", null)}-VSW"
   cidr_block  = lookup(each.value.subnet, "cidr", null)
   tags        = merge(try(var.tags, {}), try(each.value.subnet.tags, {}), local.tags)
 }

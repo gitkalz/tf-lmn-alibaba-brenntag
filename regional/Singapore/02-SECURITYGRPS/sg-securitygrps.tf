@@ -16,7 +16,7 @@ locals {
     tf-dir    = basename(dirname(abspath(path.module)))
     tf-module = basename(abspath(path.module))
   }
-  vpc_id = (var.vpc_id != "" && var.vpc_id != null) ? var.vpc_id  : try(data.alicloud_kms_secret_versions.kms_secret_versions_ds.versions.0.secret_data,null)
+  vpc_id = (var.vpc_id != "" && var.vpc_id != null) ? var.vpc_id  : null
 }
 
 resource "alicloud_security_group" "secgrp" {
