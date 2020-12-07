@@ -29,3 +29,4 @@ module "vpc" {
 locals {
   tags = merge(try(var.tags, {}), { tf_dir = "${basename(dirname(abspath(path.root)))}/${basename(abspath(path.root))}" })
 }
+

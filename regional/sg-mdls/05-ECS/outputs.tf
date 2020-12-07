@@ -1,3 +1,3 @@
 output "instances" {
-    value = module.ecs.instances
+  value = module.ecs.instances
 }

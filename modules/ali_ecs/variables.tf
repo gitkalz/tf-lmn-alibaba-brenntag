@@ -39,6 +39,11 @@ variable "num_instances" {
   description = "Enter the number of ECS Instances your want to deploy"
 }
 
+variable "instance_password" {
+  type = string
+  description = "Enter the root/administrator password for the instance"
+}
+
 variable "tags" {
   type        = map(string)
   description = "Enter the Tags with Name = value pairs you want to add"
