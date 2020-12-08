@@ -9,19 +9,19 @@ region = "ap-southeast-1"
 # }
 
 
-vswitch_id           = "" # 
-vswitch_id_regex           = "^.*Z1A.*VSW$" # Use to search the VSwitch name by regex pattern
-num_instances = "1"
-instance_password             = ""
+vswitch_id        = ""             # 
+vswitch_id_regex  = "^.*Z1B.*VSW$" # Use to search the VSwitch name by regex pattern
+num_instances     = "1"
+instance_password = ""
 
 ecs_config = {
-  dry_run              = false
-  name_pattern         = "ac-sg-ecs-sap"
-  instance_type        = "ecs.t5-lc1m2.small"
-  sec_grp_ids             = ["sg-t4na7mizpesg0rawudy2", "sg-t4nf6nspevri7k8eadjv"] # Enter the SecurityGroup ID's
-  image_id             = "ubuntu_20_04_x64_20G_alibase_20200914.vhd"
+  dry_run                    = false
+  name_pattern               = "ac-sg-ecs-sap"
+  instance_type              = "ecs.t5-lc1m2.small"
+  sec_grp_ids                = ["sg-t4na7mizpesg0rawudy2", "sg-t4nf6nspevri7k8eadjv"] # Enter the SecurityGroup ID's
+  image_id                   = "ubuntu_20_04_x64_20G_alibase_20200914.vhd"
   internet_max_bandwidth_out = "5" ## if anything greater than 0, a public IP will be assigned.
-  instance_charge_type = "PostPaid"
+  instance_charge_type       = "PostPaid"
   tags = {
     purpose = "sap"
   }

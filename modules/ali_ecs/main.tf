@@ -13,7 +13,7 @@ resource "alicloud_instance" "deploys" {
   dry_run         = lookup(var.ecs_input_map,"dry_run", false) # assume false by default
   password        = var.instance_password # assume null by default
   security_groups = compact(var.ecs_input_map.sec_grp_ids) # Required
-  user_data = (var.ecs_input_map.user_data != "" && var.ecs_input_map.user_data != null) ? var.ecs_input_map.user_data : null
+  user_data = (lookup(var.ecs_input_map,"user_data",null) != "" && lookup(var.ecs_input_map,"user_data",null)!= null) ? lookup(var.ecs_input_map, "user_data", null): null
   internet_max_bandwidth_out = lookup(var.ecs_input_map, "internet_max_bandwidth_out", "0" ) ## if anything greater than 0, a public IP will be assigned. 
   tags            = merge(try(var.ecs_input_map.tags, {}), var.tags, local.tags, { name = var.num_instances > 1 ? format("%s-%03d", var.ecs_input_map.name_pattern, count.index + 1) : var.ecs_input_map.name_pattern })
   dynamic "data_disks" {

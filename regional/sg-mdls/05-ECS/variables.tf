@@ -19,12 +19,12 @@ variable "num_instances" {
 }
 
 variable "instance_password" {
-  type = string
+  type        = string
   description = "Enter the root/administrator password for the instance"
 }
 
 variable "vswitch_id_regex" {
-  type = string
+  type        = string
   description = "Regex pattern to search for the VSwitch name and find the id"
 }
 

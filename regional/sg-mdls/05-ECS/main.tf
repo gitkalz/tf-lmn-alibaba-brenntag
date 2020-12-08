@@ -24,26 +24,26 @@ data "alicloud_vswitches" "vsw_ds" {
 }
 
 module "ecs" {
-  source        = "../../../modules/ali_ecs/"
+  source            = "../../../modules/ali_ecs/"
   instance_password = random_password.instance_password.result
-  region        = var.region
-  vswitch_id    = local.vswitch_id
-  num_instances = var.num_instances
-  ecs_input_map = var.ecs_config
-  tags          = local.tags
+  region            = var.region
+  vswitch_id        = local.vswitch_id
+  num_instances     = var.num_instances
+  ecs_input_map     = var.ecs_config
+  tags              = local.tags
 }
 
 resource "random_password" "instance_password" {
- # Use Count if you want to generate multiple passwords
-  length = 16
-  special = true
+  # Use Count if you want to generate multiple passwords
+  length           = 16
+  special          = true
   override_special = "_%@"
 }
 
 
 locals {
-  tags = merge(try(var.tags, {}), { tf_dir = "${basename(dirname(abspath(path.root)))}/${basename(abspath(path.root))}" })
-  vswitch_id = (var.vswitch_id != "" && var.vswitch_id != null) ? var.vswitch_id  : try(data.alicloud_vswitches.vsw_ds.ids.0,null)
+  tags       = merge(try(var.tags, {}), { tf_dir = "${basename(dirname(abspath(path.root)))}/${basename(abspath(path.root))}" })
+  vswitch_id = (var.vswitch_id != "" && var.vswitch_id != null) ? var.vswitch_id : try(data.alicloud_vswitches.vsw_ds.ids.0, null)
 }
 
 ## Save the Outputs in Key Management Service for retrieval in other modules
